@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,9 @@
 
 <div class="content">
     <form action="${pageContext.request.contextPath}/game" method="post">
-        <input type="text" name="playerName" placeholder="Введіть своє ім'я" required>
+        <label>
+            <input type="text" name="playerName" placeholder="Введіть своє ім'я" required>
+        </label>
         <br><br>
         <button type="submit">Почати</button>
     </form>
