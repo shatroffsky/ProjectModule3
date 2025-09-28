@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <!-- підключаємо спільні стилі -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
