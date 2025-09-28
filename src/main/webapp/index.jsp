@@ -47,8 +47,8 @@
 </div>
 
 <div class="content">
-    <form action="game.jsp" method="post">
-        <input type="text" name="playerName" placeholder="Введіть своє ім'я" required>
+    <form action="${pageContext.request.contextPath}/game" method="post">
+    <input type="text" name="playerName" placeholder="Введіть своє ім'я" required>
         <br><br>
         <button type="submit">Почати</button>
     </form>
