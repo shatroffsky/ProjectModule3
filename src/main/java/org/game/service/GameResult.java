@@ -8,7 +8,6 @@ public class GameResult {
     private String gameOverMessage;
     private String victoryMessage;
 
-    // конструктор + геттери/сеттери
     public int getStep() { return step; }
     public void setStep(int step) { this.step = step; }
 
