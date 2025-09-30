@@ -12,14 +12,15 @@ public class GameService {
         this.questionMap = questionMap;
     }
 
+    public GameResult processTurn(Integer currentStep, String choice, boolean restart) {
+        if (currentStep == null || restart) {
+            return startGame();
+        }
+        return play(currentStep, choice, false);
+    }
+
     public GameResult play(int currentStep, String choice, boolean restart) {
         GameResult result = new GameResult();
-
-        if (restart) {
-            result.setStep(1);
-            result.setQuestion(questionMap.get(1));
-            return result;
-        }
 
         int step = currentStep;
         if (choice != null) {
@@ -40,6 +41,13 @@ public class GameService {
 
         result.setStep(step);
         result.setQuestion(questionMap.get(step));
+        return result;
+    }
+
+    private GameResult startGame() {
+        GameResult result = new GameResult();
+        result.setStep(1);
+        result.setQuestion(questionMap.get(1));
         return result;
     }
 }
