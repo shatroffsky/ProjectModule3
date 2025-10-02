@@ -48,33 +48,66 @@ class GameServiceTest {
     }
 
     @Test
-    void testRestartGame() {
-        GameResult result = gameService.play(2, "a", true);
+    void testProcessTurnRestart() {
+        GameResult result = gameService.processTurn(2, "a", true);
         assertEquals(1, result.getStep());
         assertNotNull(result.getQuestion());
+    }
+
+    @Test
+    void testProcessTurnNullStep() {
+        GameResult result = gameService.processTurn(null, null, false);
+        assertEquals(1, result.getStep());
+        assertNotNull(result.getQuestion());
+    }
+
+    @Test
+    void testProcessTurnNormalPlay() {
+        GameResult result = gameService.processTurn(1, "a", false);
+        assertEquals(2, result.getStep());
     }
 
     @Test
     void testNextStep() {
         GameResult result = gameService.play(1, "a", false);
         assertEquals(2, result.getStep());
+        assertNotNull(result.getQuestion());
     }
 
     @Test
     void testGameOver() {
         GameResult result = gameService.play(1, "b", false);
         assertEquals("Ти програв", result.getGameOverMessage());
+        assertEquals(1, result.getStep());
     }
 
     @Test
     void testVictory() {
         GameResult result = gameService.play(1, "c", false);
         assertEquals("Ти переміг!", result.getVictoryMessage());
+        assertEquals(1, result.getStep());
     }
 
     @Test
     void testInvalidChoice() {
         GameResult result = gameService.play(1, "x", false);
         assertEquals(1, result.getStep());
+        assertNotNull(result.getQuestion());
+        assertNull(result.getGameOverMessage());
+        assertNull(result.getVictoryMessage());
+    }
+
+    @Test
+    void testNoChoiceProvided() {
+        GameResult result = gameService.play(1, null, false);
+        assertEquals(1, result.getStep());
+        assertNotNull(result.getQuestion());
+    }
+
+    @Test
+    void testNoQuestionFound() {
+        GameResult result = gameService.play(99, "a", false);
+        assertEquals(99, result.getStep());
+        assertNull(result.getQuestion());
     }
 }
